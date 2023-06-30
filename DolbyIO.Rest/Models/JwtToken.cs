@@ -22,11 +22,15 @@ public sealed class JwtToken
     [JsonProperty("token_type")]
     public string TokenType { get; internal set; }
 
-#nullable enable
-    /// <summary>
-    /// Gets the scope of access token.
-    /// </summary>
-    [JsonProperty("scope")]
-    public string[]? Scope { get; internal set; }
-#nullable disable
+    // TODO: Commented out due to issue below.
+
+    // If we pass a single scope, we'll get a string, not string array back
+    // from the API.
+//#nullable enable
+//    /// <summary>
+//    /// Gets the scope of access token.
+//    /// </summary>
+//    [JsonProperty("scope")]
+//    public string[]? Scope { get; internal set; }
+//#nullable disable
 }

@@ -91,9 +91,12 @@ public sealed class Authentication
             request.Headers.Authorization = new AuthenticationHeaderValue(accessToken.TokenType, accessToken.AccessToken);
             request.Headers.CacheControl = new CacheControlHeaderValue() { NoCache = true };
 
-            request.Content = new FormUrlEncodedContent(nvc);
+            // If we FormEncode this content, we'll get a 415 from the API.
+            request.Content = new JsonContent(nvc);
 
             return await _httpClient.SendAsync<JwtToken>(request);
         }
     }
+
+
 }
